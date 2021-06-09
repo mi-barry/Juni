@@ -11,11 +11,14 @@
 		2E11E702266C755E00887372 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E701266C755E00887372 /* SceneDelegate.swift */; };
 		2E11E704266C755E00887372 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E703266C755E00887372 /* ViewController.swift */; };
 		2E11E707266C755E00887372 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E11E705266C755E00887372 /* Main.storyboard */; };
-		2E11E70A266C755E00887372 /* fard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E708266C755E00887372 /* fard.xcdatamodeld */; };
 		2E11E70C266C756000887372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E11E70B266C756000887372 /* Assets.xcassets */; };
 		2E11E70F266C756000887372 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E11E70D266C756000887372 /* LaunchScreen.storyboard */; };
 		2E11E71A266C756100887372 /* fardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E719266C756100887372 /* fardTests.swift */; };
 		2E11E725266C756100887372 /* fardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E724266C756100887372 /* fardUITests.swift */; };
+		2E11E733266C75CA00887372 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E732266C75CA00887372 /* StatsViewController.swift */; };
+		2E11E775266C947E00887372 /* PersonEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E773266C947E00887372 /* PersonEntity+CoreDataClass.swift */; };
+		2E11E776266C947E00887372 /* PersonEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E11E774266C947E00887372 /* PersonEntity+CoreDataProperties.swift */; };
+		2E11E77C266D5E4A00887372 /* fard.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 2E11E708266C755E00887372 /* fard.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		2E11E720266C756100887372 /* fardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E11E724266C756100887372 /* fardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fardUITests.swift; sourceTree = "<group>"; };
 		2E11E726266C756100887372 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E11E732266C75CA00887372 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		2E11E773266C947E00887372 /* PersonEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2E11E774266C947E00887372 /* PersonEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +107,11 @@
 		2E11E6FE266C755E00887372 /* fard */ = {
 			isa = PBXGroup;
 			children = (
-				2E11E6FF266C755E00887372 /* AppDelegate.swift */,
-				2E11E701266C755E00887372 /* SceneDelegate.swift */,
-				2E11E703266C755E00887372 /* ViewController.swift */,
-				2E11E705266C755E00887372 /* Main.storyboard */,
-				2E11E70B266C756000887372 /* Assets.xcassets */,
-				2E11E70D266C756000887372 /* LaunchScreen.storyboard */,
 				2E11E710266C756000887372 /* Info.plist */,
-				2E11E708266C755E00887372 /* fard.xcdatamodeld */,
+				2E11E777266C94EF00887372 /* Model */,
+				2E11E778266C963D00887372 /* View */,
+				2E11E779266C964F00887372 /* Controller */,
+				2E11E70B266C756000887372 /* Assets.xcassets */,
 			);
 			path = fard;
 			sourceTree = "<group>";
@@ -129,6 +132,36 @@
 				2E11E726266C756100887372 /* Info.plist */,
 			);
 			path = fardUITests;
+			sourceTree = "<group>";
+		};
+		2E11E777266C94EF00887372 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2E11E773266C947E00887372 /* PersonEntity+CoreDataClass.swift */,
+				2E11E774266C947E00887372 /* PersonEntity+CoreDataProperties.swift */,
+				2E11E708266C755E00887372 /* fard.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E11E778266C963D00887372 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E11E705266C755E00887372 /* Main.storyboard */,
+				2E11E70D266C756000887372 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2E11E779266C964F00887372 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E11E6FF266C755E00887372 /* AppDelegate.swift */,
+				2E11E701266C755E00887372 /* SceneDelegate.swift */,
+				2E11E703266C755E00887372 /* ViewController.swift */,
+				2E11E732266C75CA00887372 /* StatsViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +270,7 @@
 				2E11E70F266C756000887372 /* LaunchScreen.storyboard in Resources */,
 				2E11E70C266C756000887372 /* Assets.xcassets in Resources */,
 				2E11E707266C755E00887372 /* Main.storyboard in Resources */,
+				2E11E77C266D5E4A00887372 /* fard.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E11E775266C947E00887372 /* PersonEntity+CoreDataClass.swift in Sources */,
 				2E11E704266C755E00887372 /* ViewController.swift in Sources */,
 				2E11E700266C755E00887372 /* AppDelegate.swift in Sources */,
-				2E11E70A266C755E00887372 /* fard.xcdatamodeld in Sources */,
+				2E11E776266C947E00887372 /* PersonEntity+CoreDataProperties.swift in Sources */,
+				2E11E733266C75CA00887372 /* StatsViewController.swift in Sources */,
 				2E11E702266C755E00887372 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,7 +486,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbar.fard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -469,7 +505,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mbar.fard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
