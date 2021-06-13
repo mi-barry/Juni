@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
                 
         // Basic UI setup //
-        
+                
         self.totalCaloriesBurnedView.layer.cornerRadius = 7
         self.totalPoundsLostView.layer.cornerRadius = 7
         self.effectiveTDEEView.layer.cornerRadius = 7
@@ -190,6 +190,7 @@ class ViewController: UIViewController {
         self.person.totalCaloriesBurned = calcTotalCaloriesBurned()
         self.person.totalWeightLost = calcTotalWeightLost()
         self.person.dailyIntake = 0
+        self.person.lastUpdated = Date()
         savePerson(person: self.person)
     }
     
