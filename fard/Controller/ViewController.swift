@@ -40,6 +40,12 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: MODALSTATSVIEW, sender: nil)
     }
     
+    @IBAction func resetButtonTapped(_ sender: Any) {
+        self.person.dailyIntake = 0
+        savePerson(person: self.person)
+        self.dailyIntakeLabel.text = "0 cal"
+    }
+    
     // Variables //
         
     var isFirstLaunch: Bool!
@@ -54,9 +60,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("new")
-                
+                        
         // Basic UI setup //
                 
         self.totalCaloriesBurnedView.layer.cornerRadius = 7

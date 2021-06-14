@@ -208,6 +208,19 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7E-Pb-ECR">
+                                <rect key="frame" x="288" y="546" width="106" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Pij-Cr-mSA"/>
+                                    <constraint firstAttribute="width" constant="106" id="Tk7-YI-YTe"/>
+                                </constraints>
+                                <state key="normal" title="Reset Daily">
+                                    <color key="titleColor" red="0.64705882349999999" green="0.1647058824" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetButtonTapped:" destination="4aC-km-3Qu" eventType="touchUpInside" id="Ydy-g9-3O6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xYG-9u-64h"/>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.1450980392" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -224,7 +237,9 @@
                             <constraint firstItem="tQV-dd-vjO" firstAttribute="leading" secondItem="xYG-9u-64h" secondAttribute="leading" constant="20" id="Ogf-DJ-IP4"/>
                             <constraint firstItem="tQV-dd-vjO" firstAttribute="top" secondItem="xYG-9u-64h" secondAttribute="top" id="Ou0-IO-Mpg"/>
                             <constraint firstItem="d40-5I-8Kf" firstAttribute="leading" secondItem="tQV-dd-vjO" secondAttribute="trailing" constant="18" id="ZOn-fU-dwI"/>
+                            <constraint firstItem="xYG-9u-64h" firstAttribute="trailing" secondItem="E7E-Pb-ECR" secondAttribute="trailing" constant="20" id="b5n-pg-uE7"/>
                             <constraint firstItem="xYG-9u-64h" firstAttribute="trailing" secondItem="Cu2-Mx-Ex3" secondAttribute="trailing" constant="20" id="b6v-x2-IEe"/>
+                            <constraint firstItem="E7E-Pb-ECR" firstAttribute="top" secondItem="3vH-2Z-ZEo" secondAttribute="bottom" constant="8" symbolic="YES" id="cde-z1-s5o"/>
                             <constraint firstItem="3vH-2Z-ZEo" firstAttribute="top" secondItem="gpn-m9-Z4u" secondAttribute="bottom" constant="8" symbolic="YES" id="e6g-ix-gq3"/>
                             <constraint firstItem="xYG-9u-64h" firstAttribute="trailing" secondItem="d40-5I-8Kf" secondAttribute="trailing" constant="20" id="hZS-kj-n4n"/>
                             <constraint firstItem="xYG-9u-64h" firstAttribute="trailing" secondItem="wQg-9n-W1J" secondAttribute="trailing" constant="20" id="lK4-6A-aNS"/>
