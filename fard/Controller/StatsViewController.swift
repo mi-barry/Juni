@@ -49,8 +49,8 @@ class StatsViewController: UIViewController {
             let activiyLevel = Float(self.activityLevelValue)
             let calculatedTDEE = calcTDEEMale(age: age!, height: height!, weight: weight!, activityLevel: activiyLevel)
             
-            self.basalTDEE = calculatedTDEE
-            self.adjustedTDEE = calculatedTDEE
+            self.person.basalTDEE = calculatedTDEE
+            self.person.adjustedTDEE = calculatedTDEE
             
             self.person.height = height!
             self.person.weight = weight!
@@ -70,8 +70,8 @@ class StatsViewController: UIViewController {
             let activityLevel = Float(self.activityLevelValue)
             let calculatedTDEE = calcTDEEFemale(age: age!, height: height!, weight: weight!, activityLevel: activityLevel)
             
-            self.basalTDEE = calculatedTDEE
-            self.adjustedTDEE = calculatedTDEE
+            self.person.basalTDEE = calculatedTDEE
+            self.person.adjustedTDEE = calculatedTDEE
             
             self.person.height = height!
             self.person.weight = weight!
@@ -96,8 +96,7 @@ class StatsViewController: UIViewController {
         changeActivityButtonsBackground(activeButton: self.sedentaryButton, button1: self.lightlyButton, button2: self.moderatleyButton, button3: self.veryButton, button4: self.extremelyButton)
         self.activityLevelTF.text = "Sedentary (little to no exercise + desk job)"
         self.person.activityLevel = self.activityLevelValue
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true }
     }
     
     @IBAction func lightlyButtonTapped(_ sender: Any) {
@@ -105,8 +104,7 @@ class StatsViewController: UIViewController {
         changeActivityButtonsBackground(activeButton: self.lightlyButton, button1: self.sedentaryButton, button2: self.moderatleyButton, button3: self.veryButton, button4: self.extremelyButton)
         self.activityLevelTF.text = "Lightly Active (light exercise 1-3 days/week)"
         self.person.activityLevel = self.activityLevelValue
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true }
     }
     
     @IBAction func moderatleyButtonTapped(_ sender: Any) {
@@ -114,8 +112,7 @@ class StatsViewController: UIViewController {
         changeActivityButtonsBackground(activeButton: self.moderatleyButton, button1: self.sedentaryButton, button2: self.lightlyButton, button3: self.veryButton, button4: self.extremelyButton)
         self.activityLevelTF.text = "Moderately Active (moderate exercise 3-5 days/week)"
         self.person.activityLevel = self.activityLevelValue
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true }
     }
     
     @IBAction func veryButtonTapped(_ sender: Any) {
@@ -123,8 +120,7 @@ class StatsViewController: UIViewController {
         changeActivityButtonsBackground(activeButton: self.veryButton, button1: self.sedentaryButton, button2: self.lightlyButton, button3: self.moderatleyButton, button4: self.extremelyButton)
         self.activityLevelTF.text = "Very Active (heavy exercise 6-7 days/week)"
         self.person.activityLevel = self.activityLevelValue
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true }
     }
     
     @IBAction func extremelyButtonTapped(_ sender: Any) {
@@ -132,8 +128,7 @@ class StatsViewController: UIViewController {
         changeActivityButtonsBackground(activeButton: self.extremelyButton, button1: self.sedentaryButton, button2: self.lightlyButton, button3: self.moderatleyButton, button4: self.veryButton)
         self.activityLevelTF.text = "Extremely Active (very heavy exercise, hard labor job, training 2x a day)"
         self.person.activityLevel = self.activityLevelValue
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {  self.activityLevelView.isHidden = true }
     }
     
     // Variables //
@@ -145,8 +140,8 @@ class StatsViewController: UIViewController {
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectedGender = "unspecified"
     var activityLevelValue = 0.0
-    var basalTDEE: Double!
-    var adjustedTDEE: Double!
+    var basalTDEE: Int32!
+    var adjustedTDEE: Int32!
     
     // MARK: Scene flow //
     
@@ -256,34 +251,28 @@ class StatsViewController: UIViewController {
     
     // Calculate TDEE male //
     
-    func calcTDEEMale(age: Int32, height: Int32, weight: Int32, activityLevel: Float) -> Double {
-        let weightInKg = Double(weight) * 0.453592
-        let heighInCm = Double(height) * 2.54
-        let calcWeight = 13.7 * weightInKg
-        let calcHeight = 5 * heighInCm
+    func calcTDEEMale(age: Int32, height: Int32, weight: Int32, activityLevel: Float) -> Int32 {
+        let calcWeight = 6.23 * Double(weight)
+        let calcHeight = 12.6 * Double(height)
         let calcAge = 6.8 * Double(age)
-        let tdee = 665 + (calcWeight + calcHeight - calcAge)
-        return tdee
+        let tdee = 66 + (calcWeight + calcHeight - calcAge) * Double(activityLevel)
+        return Int32(tdee)
     }
     
     // Calculate TDEE female //
     
-    func calcTDEEFemale(age: Int32, height: Int32, weight: Int32, activityLevel: Float) -> Double {
-        let weightInKg = Double(weight) * 0.453592
-        let heighInCm = Double(height) * 2.54
-        let calcWeight = 9.6 * weightInKg
-        let calcHeight = 5 * heighInCm
-        let calcAge = 6.8 * Double(age)
-        let tdee = 665 + (calcWeight + calcHeight - calcAge)
-        return tdee
+    func calcTDEEFemale(age: Int32, height: Int32, weight: Int32, activityLevel: Float) -> Int32 {
+        let calcWeight = 4.35 * Double(weight)
+        let calcHeight = 4.7 * Double(height)
+        let calcAge = 4.7 * Double(age)
+        let tdee = 665 + (calcWeight + calcHeight - calcAge) * Double(activityLevel)
+        return Int32(tdee)
     }
     
     // Save person context //
     
     func savePerson(person: PersonEntity) {
         do {
-            person.basalTDEE = Int32(self.basalTDEE)
-            person.adjustedTDEE = Int32(self.adjustedTDEE)
             try self.context.save()
         } catch {
             print("error saving person")
