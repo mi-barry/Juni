@@ -52,6 +52,7 @@ class StatsViewController: UIViewController {
             self.person.basalTDEE = calculatedTDEE
             self.person.adjustedTDEE = calculatedTDEE
             
+            self.person.startDate = Date()
             self.person.height = height!
             self.person.weight = weight!
             self.person.age = age!
@@ -73,6 +74,7 @@ class StatsViewController: UIViewController {
             self.person.basalTDEE = calculatedTDEE
             self.person.adjustedTDEE = calculatedTDEE
             
+            self.person.startDate = Date()
             self.person.height = height!
             self.person.weight = weight!
             self.person.age = age!

@@ -29,7 +29,11 @@ class ViewController: UIViewController {
     // Actions //
     @IBAction func recordButtonTapped(_ sender: Any) {
         if self.logCaloriesTV.text == "" {
-            // Do nothing
+            self.displayAlert(title: "Wait", message: "Enter a valid number.")
+        } else if self.person.age == 0 {
+            self.logCaloriesTV.resignFirstResponder()
+            self.logCaloriesTV.text = ""
+            self.displayAlert(title: "Wait", message: "Enter your stats before recording calories.")
         } else {
             self.logCaloriesTV.resignFirstResponder()
             logCalories()
@@ -40,10 +44,10 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: MODALSTATSVIEW, sender: nil)
     }
     
-    @IBAction func resetButtonTapped(_ sender: Any) {
+    @IBAction func resetDailyTapped(_ sender: Any) {
         self.person.dailyIntake = 0
-        savePerson(person: self.person)
-        self.dailyIntakeLabel.text = "0 cal"
+        self.dailyIntakeLabel.text = ""
+        self.savePerson(person: self.person)
     }
     
     // Variables //
@@ -97,6 +101,14 @@ class ViewController: UIViewController {
     }
     
     // Helper functions //
+    
+    // Alert //
+    
+    func displayAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // Check if the app is being launched for the first time //
     
