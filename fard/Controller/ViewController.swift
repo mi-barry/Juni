@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     
     @IBAction func resetDailyTapped(_ sender: Any) {
         self.person.dailyIntake = 0
-        self.dailyIntakeLabel.text = ""
+        self.dailyIntakeLabel.text = "0 cal"
         self.savePerson(person: self.person)
     }
     

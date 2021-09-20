@@ -27,6 +27,7 @@ class StatsViewController: UIViewController {
     @IBOutlet weak var moderatleyButton: UIButton!
     @IBOutlet weak var veryButton: UIButton!
     @IBOutlet weak var extremelyButton: UIButton!
+    @IBOutlet weak var resetAllButton: UIButton!
     
     // Actions //
     
@@ -36,6 +37,10 @@ class StatsViewController: UIViewController {
     
     @IBAction func maleButtonTapped(_ sender: Any) {
         setMaleButtonActive()
+    }
+    
+    @IBAction func resetAllTapped(_ sender: Any) {
+        displayConfirmationAlert()
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -145,6 +150,8 @@ class StatsViewController: UIViewController {
     var basalTDEE: Int32!
     var adjustedTDEE: Int32!
     
+    var items:[PersonEntity]?
+    
     // MARK: Scene flow //
     
     override func viewDidLoad() {
@@ -168,6 +175,7 @@ class StatsViewController: UIViewController {
         self.activityLevelTF.borderStyle = .none
         self.maleButttonWdith.constant = (screenWidth/2) - 20
         self.femaleButtonWidth.constant = (screenWidth/2) - 20
+        self.resetAllButton.layer.cornerRadius = 7
         
         self.sedentaryButton.layer.cornerRadius = 7
         self.lightlyButton.layer.cornerRadius = 7
@@ -186,7 +194,7 @@ class StatsViewController: UIViewController {
     // Set UI based on created or not yet created person //
     
     func checkStatsUpdated() {
-        if isFirstLaunch || isNotUpdatedOnce {
+        if isFirstLaunch || isNotUpdatedOnce || self.person.age == 0 {
             setPlaceholderText(placeholder: "Age", element: ageTF)
             setPlaceholderText(placeholder: "Height (inches)", element: heightTF)
             setPlaceholderText(placeholder: "Weight (lbs)", element: weightTF)
@@ -336,8 +344,38 @@ class StatsViewController: UIViewController {
             changeActivityButtonsBackground(activeButton: self.extremelyButton, button1: self.sedentaryButton, button2: self.lightlyButton, button3: self.moderatleyButton, button4: self.veryButton)
             self.activityLevelTF.text = "Extremely Active (very heavy exercise, hard labor job, training 2x a day)"
         } else {
-            print(activityLevelValue)
+            print("Something went wrong")
         }
+    }
+    
+    // Display confirmation alert
+    func displayConfirmationAlert() {
+        let alertController = UIAlertController(title: "Wait", message: "Are you sure you want to erase all date and reset? This action cannot be undone.", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) {
+            UIAlertAction in
+            self.person.activityLevel = 0
+            self.person.adjustedTDEE = 0
+            self.person.age = 0
+            self.person.basalTDEE = 0
+            self.person.dailyIntake = 0
+            self.person.gender = "unspecified"
+            self.person.height = 0
+            self.person.lastUpdated = Calendar.current.date(byAdding: .day, value: -1, to: Date())
+            self.person.startDate = Date()
+            self.person.totalCaloriesBurned = 0
+            self.person.totalCaloriesConsumed = 0
+            self.person.totalWeightLost = 0
+            self.person.weight = 0
+            self.savePerson(person: self.person)
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
  
     override func viewWillDisappear(_ animated: Bool) {
